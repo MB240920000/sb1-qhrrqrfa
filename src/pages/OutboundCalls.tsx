@@ -55,27 +55,23 @@ function OutboundCalls() {
     workingHours: 40,
     callsPerHour: 10,
     conversionRate: 5,
-    avgRevenue: 500 // Default to a more conservative value
+    avgRevenue: 500
   });
 
   // Calculate potential savings
   const calculateSavings = () => {
-    // Current setup calculations
     const annualCost = calcData.salesReps * calcData.avgSalary;
     const weeklyHours = calcData.workingHours;
     const weeklyCallCapacity = weeklyHours * calcData.callsPerHour * calcData.salesReps;
-    const annualCallCapacity = weeklyCallCapacity * 52; // 52 weeks per year
+    const annualCallCapacity = weeklyCallCapacity * 52;
     const currentConversions = Math.floor((annualCallCapacity * calcData.conversionRate) / 100);
     
-    // AI system benefits
-    const aiCallCapacity = annualCallCapacity * 3; // AI can work 24/7 (3x capacity)
-    const aiConversionRate = calcData.conversionRate * 1.2; // 20% better conversion rate
+    const aiCallCapacity = annualCallCapacity * 3;
+    const aiConversionRate = calcData.conversionRate * 1.2;
     const aiConversions = Math.floor((aiCallCapacity * aiConversionRate) / 100);
     
     const additionalConversions = aiConversions - currentConversions;
     const additionalRevenue = additionalConversions * calcData.avgRevenue;
-    
-    // Cost savings (70% reduction in sales staff costs)
     const costSavings = annualCost * 0.7;
     
     return {
